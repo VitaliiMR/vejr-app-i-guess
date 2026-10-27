@@ -1,12 +1,67 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>boiler</title>
+    <meta name="theme-color" content="#f5f6f2">
+    <meta name="description" content="Se dagens vejr og femdagesprognosen for din placering.">
+    <title>Vejr — vejret lige nu</title>
+    <link rel="stylesheet" href="./Assets/CSS/site.css">
+    <script type="module" src="./Assets/JS/site.js"></script>
 </head>
 <body>
+    <header class="topbar">
+        <a class="brand" href="./" aria-label="Vejr, forsiden">
+            <span class="brand__mark" aria-hidden="true">☀</span>
+            <span>vejr<span class="brand__period">.</span></span>
+        </a>
+        <form class="search" id="search-form" role="search">
+            <label class="sr-only" for="city-search">Søg efter en by</label>
+            <span class="search__icon" aria-hidden="true">⌕</span>
+            <input id="city-search" name="city" type="search" placeholder="Søg efter en by…" autocomplete="off" required>
+            <button type="submit">Søg</button>
+        </form>
+        <button class="location-button" id="location-button" type="button" aria-label="Vis vejret for min placering">
+            <span aria-hidden="true">◎</span>
+            <span class="location-button__label">Min placering</span>
+        </button>
+    </header>
 
-    
+    <main class="page-shell">
+        <div class="page-heading">
+            <div>
+                <p class="eyebrow">DIT LOKALE VEJR</p>
+                <h1 id="location-name">Finder din placering…</h1>
+                <p class="page-heading__date" id="today-date"></p>
+            </div>
+            <p class="updated" id="updated-at" aria-live="polite"></p>
+        </div>
+
+        <div id="status-message" class="status-message" role="status" hidden></div>
+        <section class="current-weather" id="current-weather" aria-label="Dagens vejr" aria-live="polite">
+            <div class="loading-state">
+                <span class="loading-state__spinner" aria-hidden="true"></span>
+                <p>Henter vejrudsigten…</p>
+            </div>
+        </section>
+
+        <section class="forecast-section" aria-labelledby="forecast-title">
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">PLANLÆG DE NÆSTE DAGE</p>
+                    <h2 id="forecast-title">5-dages udsigt</h2>
+                </div>
+                <p class="section-heading__hint">Vælg en dag for at se time for time</p>
+            </div>
+            <div class="forecast-grid" id="forecast-list" aria-live="polite"></div>
+        </section>
+
+        <section class="day-details" id="day-details" aria-live="polite" hidden></section>
+    </main>
+
+    <footer class="footer">
+        <p>Vejrdata fra <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">Open-Meteo</a></p>
+        <p>Vejret kan ændre sig — brug prognosen som vejledning.</p>
+    </footer>
 </body>
-</html> 
+</html>
